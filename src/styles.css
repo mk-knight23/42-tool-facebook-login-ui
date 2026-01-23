@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-fb-light text-slate-900;
+}
+
+.dark body {
+  @apply bg-fb-dark text-white;
+}
+
+@layer components {
+  .fb-input {
+    @apply w-full px-4 py-3 bg-white border border-fb-border rounded-lg text-lg focus:ring-1 focus:ring-fb-blue focus:border-fb-blue outline-none transition-all dark:bg-[#3a3b3c] dark:border-[#3a3b3c] dark:text-white;
+  }
+  .fb-card {
+    @apply bg-white dark:bg-fb-dark-card rounded-lg shadow-fb p-4 md:p-6;
+  }
+}
