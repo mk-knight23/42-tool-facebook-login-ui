@@ -1,13 +1,17 @@
-import { Component } from '@angular/core';
+import { Component, inject, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginFormComponent } from './features/auth/components/login-form.component';
+import { SettingsPanelComponent } from './features/auth/components/settings-panel.component';
+import { SettingsService } from './core/services/settings.service';
+import { AudioService } from './core/services/audio.service';
+import { KeyboardService } from './core/services/keyboard.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LoginFormComponent],
+  imports: [CommonModule, LoginFormComponent, SettingsPanelComponent],
   template: `
-    <div class="min-h-screen flex flex-col md:flex-row items-center justify-center bg-fb-light dark:bg-fb-dark transition-colors duration-300">
+    <div class="min-h-screen flex flex-col md:flex-row items-center justify-center bg-fb-light dark:bg-fb-dark transition-colors duration-300" [class.dark]="settingsService.isDarkMode()" [class.light]="!settingsService.isDarkMode()">
       
       <div class="max-w-[980px] w-full px-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-12 md:pb-32">
         
@@ -25,6 +29,14 @@ import { LoginFormComponent } from './features/auth/components/login-form.compon
         </div>
 
       </div>
+
+      <!-- Settings Button -->
+      <button
+        (click)="openSettings()"
+        class="fixed bottom-6 right-6 w-12 h-12 bg-fb-blue text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-600 transition-colors z-40"
+      >
+        <span class="text-xl">⚙️</span>
+      </button>
 
       <!-- Footer -->
       <footer class="md:fixed md:bottom-0 w-full bg-white dark:bg-fb-dark-card p-6 border-t border-fb-border dark:border-[#3a3b3c]">
@@ -77,7 +89,44 @@ import { LoginFormComponent } from './features/auth/components/login-form.compon
           <p class="text-xs text-slate-500 dark:text-slate-400 pt-2">Meta © 2026</p>
         </div>
       </footer>
+
+      <app-settings-panel></app-settings-panel>
     </div>
   `
 })
-export class App {}
+export class App {
+  settingsService = inject(SettingsService);
+  private audioService = inject(AudioService);
+  private keyboardService = inject(KeyboardService);
+
+  constructor() {
+    effect(() => {
+      this.settingsService.isDarkMode();
+    });
+
+    effect(() => {
+      const action = this.keyboardService.lastAction();
+      if (action !== 'none') {
+        this.handleAction(action);
+      }
+    });
+  }
+
+  private handleAction(action: string): void {
+    switch (action) {
+      case 'help':
+        this.settingsService.toggleHelp();
+        break;
+      case 'close':
+        if (this.settingsService.showHelp()) {
+          this.settingsService.toggleHelp();
+        }
+        break;
+    }
+  }
+
+  openSettings(): void {
+    this.audioService.playClick();
+    this.settingsService.toggleHelp();
+  }
+}

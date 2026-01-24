@@ -42,7 +42,8 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "baseHref": "/43-Facebook-Login-UI-Clone/"
             },
             "development": {
               "optimization": false,

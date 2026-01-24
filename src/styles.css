@@ -2,12 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --app-bg-light: #f0f2f5;
+  --app-bg-dark: #18191a;
+  color-scheme: dark;
+}
+
 body {
   @apply bg-fb-light text-slate-900;
 }
 
+.dark {
+  color-scheme: dark;
+}
+
+.light {
+  color-scheme: light;
+}
+
 .dark body {
   @apply bg-fb-dark text-white;
+}
+
+.light body {
+  @apply bg-fb-light text-slate-900;
+}
+
+kbd {
+  @apply px-2 py-1 text-xs font-mono bg-gray-200 dark:bg-gray-700 rounded;
 }
 
 @layer components {
