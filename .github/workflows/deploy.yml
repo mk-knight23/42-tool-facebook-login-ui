@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main, upgrade/v1]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -12,7 +12,7 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -31,7 +31,7 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: ng build
+        run: npm run build -- --base-href=/42-tool-facebook-login-ui/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -39,8 +39,15 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: 'dist/43-facebook-login-ui-clone/browser'
+          path: ./dist/facebook-clone/browser
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-page@v4
