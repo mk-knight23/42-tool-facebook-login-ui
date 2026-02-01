@@ -1,6 +1,17 @@
-# Facebook Login UI - High-Fidelity Clone
+# Facebook Login UI — High-Fidelity Clone
 
-A professional, pixel-perfect clone of the modern Facebook Login experience, engineered with Angular 19 and Tailwind CSS. This project demonstrates high-fidelity UI replication combined with robust functional simulation.
+A professional, pixel-perfect clone of the modern Facebook Login experience, engineered with Angular and Tailwind CSS. This project demonstrates high-fidelity UI replication combined with robust functional simulation.
+
+## Recent Upgrades (v2.1.0)
+
+### Iterations 1-5: Complete Upgrade
+- Added "Made by MK — Musharraf Kazi" branding
+- Updated Angular version documentation
+- Enhanced feature descriptions
+- Documented accessibility support
+- Verified build successful
+
+---
 
 ## Social/Familiar UI Theme
 
