@@ -108,6 +108,13 @@ import { KeyboardService } from './core/services/keyboard.service';
           <a href="#">Contact uploading and non-users</a>
         </div>
 
+        <!-- Made by MK Branding -->
+        <div class="pt-4 border-t border-fb-border dark:border-slate-700">
+          <p class="text-fb-blue text-xs font-bold uppercase tracking-[0.3em] text-center">
+            Made by MK — Musharraf Kazi
+          </p>
+        </div>
+
         <p class="text-xs text-fb-text-secondary dark:text-slate-400 pt-2">Meta © 2026</p>
       </div>
     </footer>
