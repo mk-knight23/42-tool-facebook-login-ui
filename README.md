@@ -1,19 +1,25 @@
-# Facebook Login UI — High-Fidelity Clone
+# Facebook Login UI — High-Fidelity Clone with OAuth Integration
 
-A professional, pixel-perfect clone of the modern Facebook Login experience, engineered with Angular and Tailwind CSS. This project demonstrates high-fidelity UI replication combined with robust functional simulation.
+A professional, pixel-perfect clone of the modern Facebook Login experience, engineered with Angular and Tailwind CSS. This project demonstrates high-fidelity UI replication combined with robust OAuth integration and session management.
 
-## What's New (v2.2.0)
+## What's New (v3.0.0)
 
-### New Features
-- **Password Visibility Toggle** — Show/hide password with eye icon
-- **Email Validation** — Real-time email format validation
-- **Error Messages** — Clear validation error messages
-- **Made by MK Branding** — Creator attribution in footer
+### Major Features
+- **OAuth Integration** — Real Facebook OAuth authentication flow
+- **User Session** — Complete session management with localStorage persistence
+- **Profile Page** — User profile display with granted permissions
+- **Settings Page** — Account settings with permission management
+- **OAuth Scopes** — Configurable OAuth permissions (email, public_profile, user_likes)
+- **Logout** — Session cleanup with Facebook SDK logout
+- **Error Handling** — Comprehensive auth error handling with user-friendly messages
+- **Demo Mode** — Mock authentication for development and testing
 
-### Improvements
-- Better form validation with specific error messages
-- Password visibility toggle for better UX
-- Email format validation using Angular validators
+### Technical Improvements
+- Protected routes with auth guards
+- Angular Signals for reactive state management
+- Service-based architecture (AuthService, SessionService, UserService)
+- Lazy-loaded components for optimal bundle size
+- Router-based navigation
 
 ---
 
@@ -21,33 +27,59 @@ A professional, pixel-perfect clone of the modern Facebook Login experience, eng
 
 | Feature | Description |
 |---------|-------------|
-| **Pixel-Perfect Design** | Replicates Facebook's 2026 design language |
-| **Reactive Forms** | Strict form validation with Angular Reactive Forms |
-| **Password Toggle** | Show/hide password visibility |
-| **Email Validation** | Real-time email format checking |
-| **Loading States** | Authentic loading animation simulation |
+| **OAuth Integration** | Real Facebook OAuth with JavaScript SDK |
+| **Demo Mode** | Mock authentication for development |
+| **Session Management** | localStorage persistence with expiry |
+| **User Profile** | Profile page with user info and permissions |
+| **Settings Page** | Account settings and permission management |
+| **Protected Routes** | Auth guards to protect authenticated routes |
+| **Error Handling** | Comprehensive error messages and recovery |
+| **Loading States** | Authentic loading animations |
 | **Dark Mode** | Automatic theme switching support |
 | **Responsive Layout** | Mobile-first, works on all devices |
 
 ## Tech Stack
 
-- **Framework:** Angular 19 (Standalone architecture)
+- **Framework:** Angular 21 (Standalone architecture)
 - **Styling:** Tailwind CSS (Custom Facebook palette)
-- **State:** Angular Signals (UI state management)
-- **Logic:** Reactive Forms (Auth validation)
-- **Services:** Settings, Audio, Keyboard (enhanced UX)
+- **State:** Angular Signals (Reactive state management)
+- **Routing:** Angular Router with lazy loading
+- **Auth:** Facebook JavaScript SDK + Demo Mode
+- **Storage:** localStorage for session persistence
 
 ## Project Structure
 
 ```
 src/app/
-├── features/auth/          # Login form & simulation
-│   └── components/
-│       ├── login-form.component.ts
-│       └── settings-panel.component.ts
-├── core/
-│   └── services/           # Settings, audio, keyboard
-└── styles.css              # Custom FB components
+├── features/
+│   ├── auth/              # Authentication
+│   │   ├── services/
+│   │   │   └── auth.service.ts
+│   │   └── components/
+│   │       ├── login-form.component.ts
+│   │       ├── landing-page.component.ts
+│   │       └── settings-panel.component.ts
+│   ├── profile/           # User profile
+│   │   └── components/
+│   │       └── profile-page.component.ts
+│   ├── settings/          # Account settings
+│   │   └── components/
+│   │       └── settings-page.component.ts
+│   └── session/           # Session management
+│       └── services/
+│           ├── session.service.ts
+│           └── user.service.ts
+├── guards/                # Route guards
+│   └── auth.guard.ts
+├── types/                 # Type definitions
+│   └── auth.types.ts
+├── config/                # Configuration
+│   └── environment.ts
+└── core/                  # Core services
+    └── services/
+        ├── settings.service.ts
+        ├── audio.service.ts
+        └── keyboard.service.ts
 ```
 
 ## Quick Start
@@ -63,11 +95,68 @@ npm start
 npm run build
 ```
 
-## Form Validation
+## Configuration
 
-- **Email**: Required, must be valid email format
-- **Password**: Required, minimum 6 characters
-- Real-time error messages displayed on touch
+### Setting up Facebook OAuth
+
+1. Create a Facebook App at [Facebook Developers](https://developers.facebook.com/)
+2. Add your domain to the App Domains
+3. Copy your App ID
+4. Update `/src/app/config/environment.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  demoMode: false, // Set to false to enable real OAuth
+  oauth: {
+    appId: 'YOUR_FACEBOOK_APP_ID', // Replace with your App ID
+    version: 'v19.0',
+    scopes: ['email', 'public_profile', 'user_likes']
+  }
+};
+```
+
+### Demo Mode
+
+Demo mode is enabled by default for development. It uses mock authentication without requiring Facebook OAuth setup. Toggle demo mode from the login page or settings page.
+
+## Authentication Flow
+
+### Demo Mode (Default)
+1. Enable "Demo Mode" toggle on login page
+2. Click "Demo Mode Login" button
+3. Get authenticated with mock user data
+4. Access profile and settings pages
+
+### OAuth Mode
+1. Disable "Demo Mode" toggle
+2. Click "Continue with Facebook" button
+3. Complete Facebook OAuth flow
+4. Grant requested permissions
+5. Get authenticated with real Facebook data
+
+## Routes
+
+| Route | Guard | Description |
+|-------|-------|-------------|
+| `/` | Guest | Login page (redirects to profile if authenticated) |
+| `/profile` | Auth | User profile page |
+| `/settings` | Auth | Account settings page |
+
+## Session Management
+
+- Sessions are stored in localStorage
+- Session expires after 1 hour (configurable)
+- Auto-refresh on user activity
+- Manual logout from settings page
+
+## OAuth Scopes
+
+| Scope | Description | Required |
+|-------|-------------|----------|
+| `email` | User's email address | Yes |
+| `public_profile` | Public profile information | Yes |
+| `user_likes` | User's likes and interests | No |
 
 ## Deployment
 
