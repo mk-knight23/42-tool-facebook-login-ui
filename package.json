@@ -1,6 +1,7 @@
 {
-  "name": "facebook-clone",
-  "version": "0.0.0",
+  "name": "42-tool-facebook-login-ui",
+  "version": "2.0.0",
+  "description": "Facebook login UI component built with Angular 21",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -23,12 +24,10 @@
   "private": true,
   "packageManager": "npm@11.6.2",
   "dependencies": {
-    "@angular/cdk": "^21.1.1",
     "@angular/common": "^21.1.0",
     "@angular/compiler": "^21.1.0",
     "@angular/core": "^21.1.0",
-    "@angular/forms": "^21.1.1",
-    "@angular/material": "^21.1.1",
+    "@angular/forms": "^21.1.0",
     "@angular/platform-browser": "^21.1.0",
     "@angular/router": "^21.1.0",
     "lucide-angular": "^0.563.0",
@@ -39,7 +38,7 @@
     "@angular/build": "^21.1.1",
     "@angular/cli": "^21.1.1",
     "@angular/compiler-cli": "^21.1.0",
-    "@tailwindcss/postcss": "^4.0.0",
+    "@tailwindcss/postcss": "^4.1.18",
     "autoprefixer": "^10.4.20",
     "jsdom": "^27.1.0",
     "postcss": "^8.4.49",
