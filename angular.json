@@ -44,7 +44,7 @@
                 }
               ],
               "outputHashing": "all",
-              "baseHref": "/43-Facebook-Login-UI-Clone/"
+              "baseHref": "/42-tool-facebook-login-ui/"
             },
             "development": {
               "optimization": false,

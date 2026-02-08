@@ -5,9 +5,10 @@ import { OAuthConfig } from '../types/auth.types';
  */
 export const environment = {
   production: false,
-  demoMode: true, // Default to demo mode for development
+  demoMode: true, // Default to demo mode for initial deployment
   oauth: {
-    appId: 'YOUR_FACEBOOK_APP_ID', // Replace with actual Facebook App ID
+    // Support for runtime or build-time environment injection
+    appId: (window as any)._env_?.FB_APP_ID || '123456789012345',
     version: 'v19.0',
     scopes: ['email', 'public_profile', 'user_likes']
   } as OAuthConfig

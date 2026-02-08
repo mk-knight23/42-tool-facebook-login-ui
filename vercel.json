@@ -1,0 +1,12 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "name": "42-tool-facebook-login-ui",
+    "framework": "angular",
+    "buildCommand": "npm run build",
+    "outputDirectory": "dist/facebook-clone/browser",
+    "installCommand": "npm install",
+    "devCommand": "npm start",
+    "github": {
+        "enabled": false
+    }
+}

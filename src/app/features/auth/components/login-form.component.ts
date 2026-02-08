@@ -144,6 +144,12 @@ import { AuthErrorDetails } from '../../../types/auth.types';
             {{ isDemoMode() ? 'Disable' : 'Enable' }}
           </button>
         </div>
+        @if (!isDemoMode()) {
+          <div class="mt-2 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-fb-blue animate-pulse">
+            <span class="w-2 h-2 bg-fb-blue rounded-full"></span>
+            Production Security Protocol Active
+          </div>
+        }
       </div>
     </div>
 
