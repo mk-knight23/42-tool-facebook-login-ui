@@ -1,109 +1,69 @@
-# 42-tool-facebook-login-ui
+# Facebook Login UI
 
-# Facebook Login UI — High-Fidelity Clone with OAuth Integration
+A high-fidelity clone of the modern Facebook login experience, built with **Angular 21** and **Tailwind CSS v4**.
 
-A professional, pixel-perfect clone of the modern Facebook Login experience, engineered with Angular and Tailwind CSS. This project demonstrates high-fidelity UI replication combined with robust OAuth integration and session management.
+## Features
 
-## What's New (v3.0.0)
+- **Pixel-perfect login page** — Faithful reproduction of the Facebook login UI
+- **Facebook OAuth integration** — Real authentication via the Facebook SDK
+- **Demo mode** — Mock authentication for development and testing
+- **Profile page** — Displays user info and granted OAuth permissions
+- **Settings page** — Account settings with permission management
+- **Dark mode** — Dark, light, and system theme switching
+- **Session management** — localStorage persistence with automatic expiry
+- **Protected routes** — Auth guards for authenticated pages
+- **Sound effects** — Optional audio feedback via Web Audio API
+- **Keyboard shortcuts** — Quick access to settings and help
+- **Responsive design** — Mobile-first layout with Tailwind utility classes
+- **Accessibility** — Focus management, reduced-motion support, semantic HTML
 
-### Major Features
-- **OAuth Integration** — Real Facebook OAuth authentication flow
-- **User Session** — Complete session management with localStorage persistence
-- **Profile Page** — User profile display with granted permissions
-- **Settings Page** — Account settings with permission management
-- **OAuth Scopes** — Configurable OAuth permissions (email, public_profile, user_likes)
-- **Logout** — Session cleanup with Facebook SDK logout
-- **Error Handling** — Comprehensive auth error handling with user-friendly messages
-- **Demo Mode** — Mock authentication for development and testing
+## Tech Stack
 
-### Technical Improvements
-- Protected routes with auth guards
-- Angular Signals for reactive state management
-- Service-based architecture (AuthService, SessionService, UserService)
-- Lazy-loaded components for optimal bundle size
-- Router-based navigation
+- Angular 21 (standalone components, signals, lazy-loaded routes)
+- Tailwind CSS v4 (via PostCSS plugin)
+- TypeScript 5.9
+- Vitest (unit testing)
 
----
-
-
-
-## ✨ Features
-
-This repository has been upgraded with the following features:
-
-1. **Add comprehensive error handling** ✅
-2. **Implement logging system** ✅
-3. **Add input validation** ✅
-4. **Optimize performance** ✅
-5. **Add accessibility improvements** ✅
-6. **Add documentation** ✅
-7. **Create examples** ✅
-8. **Add CI/CD pipeline** ✅
-9. **Implement monitoring** ✅
-10. **Add security headers** ✅
-
----
-
-## 🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install dependencies
 npm install
 
 # Start development server
-npm run dev
+npm start
 
 # Build for production
 npm run build
+
+# Run tests
+npm test
 ```
 
-## 📦 Tech Stack
+## Project Structure
 
-- Modern web framework
-- Optimized for performance
-- Responsive design
-- Accessibility ready
-
-## 🛠️ Installation
-
-```bash
-git clone https://github.com/mk-knight23/42-tool-facebook-login-ui.git
-cd 42-tool-facebook-login-ui
-npm install
+```
+src/
+  app/
+    config/          # Environment and OAuth configuration
+    core/            # Global services (settings, stats, audio, keyboard)
+      handlers/      # Global error handler
+      services/      # Singleton services
+      utils/         # Constants and shared utilities
+    features/
+      auth/          # Login form, landing page, settings panel, auth service
+      profile/       # Profile page component
+      session/       # Session and user services
+      settings/      # Settings page component
+    guards/          # Route guards (auth, guest)
+    types/           # TypeScript interfaces and types
+    app.component.ts # Root component with footer and router outlet
+    app.config.ts    # Application providers
+    app.routes.ts    # Route definitions
+  styles.css         # Global styles and Tailwind theme
+  main.ts            # Bootstrap entry point
 ```
 
-## 📝 License
+## License
 
 MIT
-
----
-
-*Last updated: 2026-02-27*
-
-
-## 🎯 Problem Solved
-
-This repository provides a streamlined approach to modern development needs, enabling developers to build robust applications with minimal complexity and maximum efficiency.
-
-## 🏗️ Architecture
-
-```
-```
-
-## 🌐 Deployment
-
-### Live URLs
-
-| Platform | URL |
-|----------|-----|
-| Vercel | [Deployed Link] |
-| GitHub Pages | [Deployed Link] |
-
-
-## 📄 License
-
-MIT License - see LICENSE file for details
-
----
-
-Built with ❤️ by mk-knight23
