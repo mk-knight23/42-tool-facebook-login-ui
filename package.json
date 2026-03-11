@@ -3,6 +3,7 @@
   "version": "2.0.0",
   "description": "Facebook login UI component built with Angular 21",
   "scripts": {
+    "production": "npm run build && npm start",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
